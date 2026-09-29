@@ -22,11 +22,9 @@ workflows:
     max_build_duration: 60
     environment:
       java: 17
-      # To sign for Google Play: upload a keystore in Codemagic
-      # (Team settings > Code signing identities > Android keystores),
-      # then uncomment the two lines below with its reference name.
-      # android_signing:
-      #   - ginja_keystore
+      # Keystore uploaded in Codemagic (Team settings > Code signing identities > Android keystores)
+      android_signing:
+        - kalda
     scripts:
       - name: Set Android SDK location
         script: |
