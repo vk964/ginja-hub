@@ -1,10 +1,12 @@
 workflows:
   android-workflow:
-    name: Android Workflow
+    name: R7 Bet — Release APK + AAB
     instance_type: mac_mini_m2
     max_build_duration: 60
     environment:
       java: 17
+      android_signing:
+        - kalda
       vars:
         AF_HANDOFF_CONFIG_KEY: "p7a39e15d8c024bf691e2"
         APPSFLYER_DEV_KEY: "oGFCBcDPKreTBoQgRTzucF"
@@ -12,12 +14,14 @@ workflows:
       - name: Set Android SDK location
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/local.properties"
-      - name: Build Android debug APK
+      - name: Build signed release APK and AAB
         script: |
           chmod +x ./gradlew
-          ./gradlew assembleDebug
+          ./gradlew :app:testDebugUnitTest :app:assembleRelease :app:bundleRelease --console=plain
     artifacts:
-      - app/build/outputs/**/*.apk
+      - app/build/outputs/apk/release/*.apk
+      - app/build/outputs/bundle/release/*.aab
+      - app/build/outputs/mapping/release/mapping.txt
 
   android-aab-workflow:
     name: Android AAB (release bundle)
