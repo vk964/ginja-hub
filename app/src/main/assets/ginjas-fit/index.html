@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="application-name" content="Ginjas-fit">
+<meta name="app-bundle-id" content="pt.ginjasfit.quintadasginjeiras.obidos.farmstay.countryside.reservations.app.gf7k29xq">
+<meta name="theme-color" content="#B3141C">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ginjas-fit · Farm stays in Portugal</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ginjas-fit">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+@font-face{font-family:"Young Serif";src:url("fonts/YoungSerif-Regular.ttf") format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Figtree";src:url("fonts/Figtree-Variable.ttf") format("truetype");font-weight:300 900;font-display:swap}
+:root{
+  --red:#B3141C; --bright:#E3262E; --burgundy:#5C0F1A; --ember:#F2561D;
+  --charcoal:#221B1B; --cream:#FBF3EA; --paper:#FFFFFF; --sand:#F3E4D3;
+  --ink:#221B1B; --muted:#6E5E5A; --line:#EAD9C8; --card:#FFFFFF;
+  --bg:var(--cream); --nav:#FFFFFFEE; --chip:#F7E6DA; --focus:#F2561D;
+  --serif:"Young Serif", Georgia, "Times New Roman", serif;
+  --sans:"Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#F6EAE2; --muted:#C4AFA8; --line:#3E2C2C; --card:#2A2020;
+    --bg:#1A1414; --nav:#221A1AEE; --chip:#3A2424; --sand:#2E2121; --paper:#2A2020;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F6EAE2; --muted:#C4AFA8; --line:#3E2C2C; --card:#2A2020;
+  --bg:#1A1414; --nav:#221A1AEE; --chip:#3A2424; --sand:#2E2121; --paper:#2A2020;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+img,svg{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;padding-bottom:96px}
+@media (min-width:560px){.app{box-shadow:0 0 0 1px var(--line)}}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--nav);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:20px;color:var(--red);background:none;border:0;padding:0;cursor:pointer}
+:root[data-theme="dark"] .brand{color:#FF6B6B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand{color:#FF6B6B}}
+.brand .m{width:36px;height:36px;border-radius:9px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.back{border:0;background:var(--chip);width:38px;height:38px;border-radius:50%;display:grid;place-items:center;cursor:pointer}
+.top .spacer{flex:1}
+.top .cta-mini{border:0;background:var(--red);color:#fff;font-weight:600;font-size:14px;padding:8px 14px;border-radius:999px;cursor:pointer}
+
+/* bottom nav */
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,480px);z-index:30;display:grid;grid-template-columns:repeat(5,1fr);background:var(--nav);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 4px;padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+.nav button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;font-weight:600;color:var(--muted);padding:6px 0;cursor:pointer;border-radius:12px}
+.nav button svg{width:24px;height:24px}
+.nav button[aria-current="page"]{color:var(--red)}
+.nav button[aria-current="page"] .ic{background:var(--chip)}
+.nav .ic{padding:3px 14px;border-radius:999px;display:grid;place-items:center}
+:root[data-theme="dark"] .nav button[aria-current="page"]{color:#FF6B6B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .nav button[aria-current="page"]{color:#FF6B6B}}
+
+/* type */
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;line-height:1.15;letter-spacing:-.01em}
+h1{font-size:34px}
+h2{font-size:24px}
+h3{font-size:19px}
+p{margin:0}
+.muted{color:var(--muted)}
+.sec{padding:28px 18px 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.link{border:0;background:none;color:var(--red);font-weight:600;cursor:pointer;padding:4px 0;font-size:15px}
+:root[data-theme="dark"] .link{color:#FF7A7A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .link{color:#FF7A7A}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:16px;padding:15px 22px;font-weight:700;font-size:16px;cursor:pointer;text-decoration:none}
+.btn svg{width:20px;height:20px;flex:0 0 20px}
+.btn-primary{background:var(--red);color:#fff;box-shadow:0 6px 0 var(--burgundy)}
+.btn-primary:active{transform:translateY(3px);box-shadow:0 3px 0 var(--burgundy)}
+.btn-ghost{background:var(--chip);color:var(--ink)}
+.btn-block{width:100%}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--burgundy);color:#fff}
+.hero .scene{width:100%;height:360px}
+.hero .overlay{position:absolute;inset:auto 0 0 0;padding:60px 18px 22px;background:linear-gradient(to top, rgba(60,8,16,.92), rgba(60,8,16,.55) 55%, transparent)}
+.hero h1{font-size:36px;max-width:13ch}
+.hero p{margin-top:8px;max-width:34ch;color:#FBE3DA}
+.hero .mascot{position:absolute;right:8px;top:18px;width:120px;height:120px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.3))}
+.bubble{position:absolute;right:118px;top:34px;background:#fff;color:var(--charcoal);font-family:var(--serif);font-size:15px;padding:8px 12px;border-radius:14px 14px 4px 14px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.hero-cta{padding:0 18px;margin-top:-26px;position:relative;z-index:2}
+
+/* azulejo band — the one bold motif */
+.tiles{height:34px;background-color:var(--red);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Cg fill='none' stroke='%23FBF3EA' stroke-width='1.6'%3E%3Ccircle cx='17' cy='17' r='6'/%3E%3Cpath d='M17 0v6M17 28v6M0 17h6M28 17h6'/%3E%3Cpath d='M0 0l7 7M34 0l-7 7M0 34l7-7M34 34l-7-7'/%3E%3C/g%3E%3Ccircle cx='17' cy='17' r='2' fill='%23FBF3EA'/%3E%3C/svg%3E");background-size:34px 34px}
+.tiles.thin{height:12px;background-size:12px 12px;opacity:.9}
+
+/* intro */
+.intro{display:grid;grid-template-columns:1fr;gap:10px}
+.intro p{font-size:17px;line-height:1.6}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.fact b{display:block;font-family:var(--serif);font-weight:400;font-size:20px;color:var(--red)}
+.fact span{font-size:12.5px;color:var(--muted)}
+
+/* stay cards */
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 18px 8px;margin:0 -18px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail>*{scroll-snap-align:start;flex:0 0 76%}
+.scard{background:var(--card);border-radius:22px;overflow:hidden;border:1px solid var(--line);cursor:pointer;text-align:left;padding:0;display:block;width:100%}
+.scard .ph{height:170px;position:relative}
+.scard .ph svg{width:100%;height:100%}
+.price-tag{position:absolute;left:12px;bottom:12px;background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 11px;font-size:13.5px;font-weight:700}
+.price-tag small{font-weight:500;color:var(--muted)}
+.scard .body{padding:14px 16px 16px}
+.scard .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:5px;background:var(--chip);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:500}
+.chip svg{width:14px;height:14px}
+
+.featured{border-radius:26px;overflow:hidden;background:var(--burgundy);color:#fff;cursor:pointer;border:0;padding:0;text-align:left;width:100%;display:block}
+.featured .ph{height:210px}
+.featured .ph svg{width:100%;height:100%}
+.featured .body{padding:16px 18px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.featured .body p{color:#F4CFC4;font-size:14.5px;margin-top:4px}
+.featured .from{text-align:right;white-space:nowrap}
+.featured .from b{font-family:var(--serif);font-weight:400;font-size:24px;display:block}
+.featured .from span{font-size:12px;color:#F4CFC4}
+.badge{display:inline-block;background:var(--ember);color:#fff;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:8px}
+
+/* list items */
+.list{display:grid;gap:12px}
+.row{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.row .ico{flex:0 0 46px;height:46px;border-radius:14px;background:var(--chip);display:grid;place-items:center;color:var(--red)}
+:root[data-theme="dark"] .row .ico{color:#FF7A7A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .row .ico{color:#FF7A7A}}
+.row .ico svg{width:24px;height:24px}
+.row h3{font-family:var(--sans);font-weight:700;font-size:16px}
+.row p{font-size:14.5px;color:var(--muted);margin-top:2px}
+.row .side{margin-left:auto;text-align:right;font-size:13px;color:var(--muted);white-space:nowrap}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.tile .ph{height:96px}
+.tile .ph svg{width:100%;height:100%}
+.tile .t{padding:10px 12px 12px}
+.tile h3{font-family:var(--sans);font-weight:700;font-size:15px}
+.tile p{font-size:13.5px;color:var(--muted);margin-top:2px}
+
+/* map */
+.map{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.map svg{width:100%;height:auto}
+.map .body{padding:14px 16px}
+
+/* detail */
+.gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gallery::-webkit-scrollbar{display:none}
+.gallery>div{flex:0 0 100%;scroll-snap-align:start;height:280px;position:relative}
+.gallery>div svg{width:100%;height:100%}
+.gallery .cap{position:absolute;left:14px;bottom:14px;background:rgba(34,27,27,.7);color:#fff;font-size:13px;padding:4px 10px;border-radius:999px}
+.dots{display:flex;gap:6px;justify-content:center;padding:10px 0 0}
+.dots span{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots span.on{background:var(--red);width:20px;border-radius:999px}
+.amen{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.amen div{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 12px;font-size:14.5px}
+.amen svg{width:20px;height:20px;flex:0 0 20px;color:var(--red)}
+:root[data-theme="dark"] .amen svg{color:#FF7A7A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .amen svg{color:#FF7A7A}}
+.stickybar{position:fixed;left:50%;transform:translateX(-50%);width:min(100%,480px);bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:25;padding:10px 16px;background:var(--nav);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.stickybar .p b{font-family:var(--serif);font-weight:400;font-size:22px}
+.stickybar .p span{font-size:13px;color:var(--muted);display:block;margin-top:-4px}
+.stickybar .btn{margin-left:auto;padding:13px 20px}
+.has-sticky{padding-bottom:170px}
+
+/* compare table */
+.cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+table.cmp{border-collapse:collapse;min-width:560px;width:100%;font-size:14px}
+.cmp th,.cmp td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp thead th{font-family:var(--serif);font-weight:400;font-size:15px;background:var(--chip)}
+.cmp tbody th{font-weight:600;color:var(--muted);white-space:nowrap}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:0}
+.yes{color:#2E7D32;font-weight:700}
+.no{color:var(--muted)}
+
+/* segmented */
+.seg{display:flex;gap:6px;background:var(--chip);padding:4px;border-radius:14px;margin-bottom:16px}
+.seg button{flex:1;border:0;background:none;padding:9px;border-radius:10px;font-weight:600;cursor:pointer;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+
+/* form */
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px}
+.step{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.step .n{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
+.field{display:grid;gap:6px;margin-top:14px}
+.field label{font-weight:600;font-size:14.5px}
+.field input,.field select,.field textarea{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:14px;padding:13px 14px;font-size:16px}
+.field textarea{min-height:92px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ember)}
+.field .err{color:var(--bright);font-size:13.5px;font-weight:600;display:none}
+.field.bad input,.field.bad select{border-color:var(--bright)}
+.field.bad .err{display:block}
+.opt{font-weight:400;color:var(--muted)}
+
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.cal-head h3{font-size:18px}
+.cal-head button{border:0;background:var(--chip);width:38px;height:38px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+.cal-head button:disabled{opacity:.35;cursor:default}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px 0;text-align:center}
+.cal .dow{font-size:12px;font-weight:600;color:var(--muted);padding:4px 0}
+.cal button{border:0;background:none;height:42px;font-size:15px;font-weight:500;cursor:pointer;position:relative;z-index:0}
+.cal button:disabled{color:var(--muted);opacity:.4;cursor:default;text-decoration:line-through}
+.cal button.in{background:var(--chip)}
+.cal button.start,.cal button.end{color:#fff;font-weight:700}
+.cal button.start::before,.cal button.end::before{content:"";position:absolute;inset:2px 4px;border-radius:12px;background:var(--red);z-index:-1}
+.cal button.start{background:linear-gradient(to right,transparent 50%,var(--chip) 50%)}
+.cal button.end{background:linear-gradient(to left,transparent 50%,var(--chip) 50%)}
+.cal button.start.end{background:none}
+.cal button.today{text-decoration:underline;text-underline-offset:4px}
+.cal{isolation:isolate}
+.range{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.range div{background:var(--chip);border-radius:14px;padding:10px 12px}
+.range span{font-size:12.5px;color:var(--muted);display:block}
+.range b{font-size:15px}
+.nights{margin-top:10px;font-size:14px;color:var(--muted)}
+
+.counter{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+.counter:last-of-type{border-bottom:0}
+.counter .l b{display:block}
+.counter .l span{font-size:13.5px;color:var(--muted)}
+.counter .c{display:flex;align-items:center;gap:14px}
+.counter .c button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--paper);font-size:20px;cursor:pointer;display:grid;place-items:center}
+.counter .c button:disabled{opacity:.35;cursor:default}
+.counter .c output{min-width:18px;text-align:center;font-weight:700;font-size:17px}
+
+.stay-pick{display:grid;gap:8px}
+.stay-pick label{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;background:var(--bg)}
+.stay-pick input{accent-color:var(--red);width:18px;height:18px}
+.stay-pick label:has(input:checked){border-color:var(--red);background:var(--chip)}
+.stay-pick .pr{margin-left:auto;font-weight:700;font-size:14px;white-space:nowrap}
+.stay-pick small{display:block;color:var(--muted);font-size:13px}
+
+.note{display:flex;gap:10px;background:var(--chip);border-radius:16px;padding:12px 14px;font-size:14px}
+.note svg{flex:0 0 20px;width:20px;height:20px;color:var(--red)}
+.alert{background:#FDE3E1;color:#8A0F16;border-radius:14px;padding:12px 14px;font-weight:600;font-size:14.5px;margin-top:12px;display:none}
+.alert.show{display:block}
+
+/* confirmation */
+.done-hero{text-align:center;padding:26px 18px 6px}
+.done-hero .m{width:150px;height:150px;margin:0 auto}
+.done-hero h1{font-size:30px;margin-top:6px}
+.done-hero p{margin-top:8px;color:var(--muted)}
+.ref{display:inline-block;margin-top:12px;background:var(--chip);border-radius:999px;padding:6px 14px;font-weight:700;letter-spacing:.04em}
+.sum dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 14px;font-size:15px}
+.sum dt{color:var(--muted)}
+.sum dd{margin:0;font-weight:600;text-align:right;word-break:break-word}
+.sum hr{border:0;border-top:1px dashed var(--line);grid-column:1/-1;margin:2px 0;width:100%}
+.timeline{display:grid;gap:0;margin-top:4px}
+.timeline div{display:flex;gap:12px;padding:8px 0}
+.timeline .d{flex:0 0 26px;height:26px;border-radius:50%;background:var(--chip);display:grid;place-items:center;font-size:13px;font-weight:700}
+.timeline .d.on{background:var(--red);color:#fff}
+.timeline p{font-size:14.5px}
+.timeline b{display:block;font-size:15px}
+
+/* guide bubble (mascot in sections) */
+.guide{display:flex;gap:12px;align-items:flex-end;margin-top:4px}
+.guide .m{flex:0 0 76px;width:76px;height:76px}
+.guide .say{background:var(--card);border:1px solid var(--line);border-radius:18px 18px 18px 4px;padding:12px 14px;font-size:15px}
+.guide .say b{font-family:var(--serif);font-weight:400}
+
+.page-title{padding:22px 18px 4px}
+.page-title p{margin-top:6px;color:var(--muted)}
+.season{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px}
+.season::-webkit-scrollbar{display:none}
+.season .chip{white-space:nowrap}
+.faq details{border-bottom:1px solid var(--line);padding:12px 0}
+.faq summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:20px;line-height:1;color:var(--red)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin-top:8px;color:var(--muted);font-size:14.5px}
+.foot{padding:28px 18px 10px;text-align:center;font-size:13px;color:var(--muted)}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero .mascot{animation:bob 3.2s ease-in-out 1}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.05);opacity:1}100%{transform:scale(1)}}
+.done-hero .m{animation:pop .6s ease-out}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="top" id="top"></header>
+  <main id="main" tabindex="-1"></main>
+</div>
+<div id="sticky"></div>
+<nav class="nav" id="nav" aria-label="Main"></nav>
+
+<script>
+(function(){
+"use strict";
+
+const LOGO = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" aria-hidden="true"><defs><radialGradient id="lg-bg" cx="50%" cy="42%" r="70%"><stop offset="0" stop-color="#F0452B"/><stop offset=".45" stop-color="#C4161E"/><stop offset="1" stop-color="#4A0B14"/></radialGradient><radialGradient id="lg-hb" cx="45%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F1E6DC"/></radialGradient><linearGradient id="lg-hc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0373D"/><stop offset="1" stop-color="#B3141C"/></linearGradient><linearGradient id="lg-ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFC56B"/><stop offset=".5" stop-color="#F2861D"/><stop offset="1" stop-color="#FFC56B"/></linearGradient><pattern id="lg-az" width="64" height="64" patternUnits="userSpaceOnUse"><g fill="none" stroke="#FBF3EA" stroke-width="2.4" opacity=".16"><circle cx="32" cy="32" r="11"/><path d="M32 0v11M32 53v11M0 32h11M53 32h11M0 0l13 13M64 0L51 13M0 64l13-13M64 64L51 51"/></g></pattern></defs><rect aria-hidden="true" rx="224" fill="url(#lg-bg)"/><rect aria-hidden="true" rx="224" fill="url(#lg-az)"/><circle cx="512" cy="512" r="400" fill="#5C0F1A" opacity=".35"/><circle cx="512" cy="512" r="400" fill="none" stroke="url(#lg-ring)" stroke-width="18"/><circle cx="512" cy="512" r="374" fill="none" stroke="#FBF3EA" stroke-width="3.0" stroke-dasharray="4 18" opacity=".55"/><g transform="translate(192.0 272.0) scale(1.35)"><path d="M0 0C10-40 40-60 70-70M40 -8C44-40 56-60 70-70" stroke="#3E6B2E" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M70-70c18-18 44-14 52 2-20 8-38 8-52-2z" fill="#6F9A45"/><circle cx="0" cy="18" r="22" fill="#E3262E" stroke="#7A0E14" stroke-width="4"/><circle cx="42" cy="12" r="22" fill="#E3262E" stroke="#7A0E14" stroke-width="4"/><circle cx="-7" cy="10" r="6" fill="#fff" opacity=".7"/><circle cx="35" cy="4" r="6" fill="#fff" opacity=".7"/></g><g transform="translate(122.0 114.40000000000003) scale(3.9)"><ellipse cx="100" cy="188" rx="46" ry="6" fill="#3A0610" opacity=".35"/><path d="M84 168v14M78 182h12M116 168v14M110 182h12" stroke="#F2861D" stroke-width="5" stroke-linecap="round"/><path d="M40 112c-18-6-26-24-18-38 10 2 16 10 20 18-2-14 2-26 12-30 4 12 2 24-2 34z" fill="#fff" stroke="#E6D5C6" stroke-width="2"/><ellipse cx="100" cy="128" rx="58" ry="48" fill="url(#lg-hb)" stroke="#E6D5C6" stroke-width="2"/><path d="M70 124c8 10 22 14 34 10" stroke="#E6D5C6" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="104" cy="76" r="38" fill="url(#lg-hb)" stroke="#E6D5C6" stroke-width="2"/><g fill="url(#lg-hc)"><circle cx="86" cy="42" r="11"/><circle cx="103" cy="34" r="14"/><circle cx="120" cy="42" r="11"/><ellipse cx="104" cy="46" rx="22" ry="7"/></g><path d="M92 104h26l-4 16-18 2z" fill="url(#lg-hc)"/><path d="M66 104c20 10 56 10 76 0l2 12c-22 12-58 12-80 0z" fill="#B3141C"/><path d="M96 110h20l-2 14-8 6-8-6z" fill="#fff" stroke="#8A0F16" stroke-width="1.5"/><path d="M110 115h-7v8h7v-3h-3" stroke="#B3141C" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M104 101c-5 0-6 8-2 12 3 3 8 1 7-5-1-4-2-7-5-7z" fill="#E3262E"/><path d="M94 84c4-6 16-6 20 0l-10 12z" fill="#F7931E" stroke="#D96F10" stroke-width="1.5" stroke-linejoin="round"/><ellipse cx="88" cy="72" rx="6" ry="7" fill="#221B1B"/><ellipse cx="120" cy="72" rx="6" ry="7" fill="#221B1B"/><circle cx="90" cy="69" r="2.2" fill="#fff"/><circle cx="122" cy="69" r="2.2" fill="#fff"/><path d="M80 60c4-3 10-3 14 0M114 60c4-3 10-3 14 0" stroke="#221B1B" stroke-width="2.4" fill="none" stroke-linecap="round"/><ellipse cx="78" cy="86" rx="7" ry="4" fill="#F28C8C" opacity=".6"/><ellipse cx="132" cy="86" rx="7" ry="4" fill="#F28C8C" opacity=".6"/><path d="M150 118c14-10 22-28 24-46 1-6 8-7 9-1 3 22-6 44-24 58z" fill="#fff" stroke="#E6D5C6" stroke-width="2"/><path d="M170 66c3-4 8-4 9 1M176 70c3-3 8-2 8 2" stroke="#E6D5C6" stroke-width="2" fill="none" stroke-linecap="round"/></g></svg>`;
+const APP = {name:"Ginjas-fit", bundleId:"pt.ginjasfit.quintadasginjeiras.obidos.farmstay.countryside.reservations.app.gf7k29xq", version:"1.0.2"};
+/* ---------- icons ---------- */
+const I = {
+  home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  bed:'<path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.6"/>',
+  farm:'<path d="M4 21V10l8-6 8 6v11z"/><path d="M9 21v-6h6v6M4 10h16"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',
+  phone:'<path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/>',
+  back:'<path d="M15 5l-7 7 7 7"/>',
+  left:'<path d="M15 5l-7 7 7 7"/>',
+  right:'<path d="M9 5l7 7-7 7"/>',
+  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/>',
+  door:'<path d="M5 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17M3 21h18"/><circle cx="15" cy="12" r="1"/>',
+  bath:'<path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 4 0"/>',
+  kitchen:'<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 0-3 3-3 6s1 4 3 4v8"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.4 1.4M17.6 17.6L19 19M5 19l1.4-1.4M17.6 6.4L19 5"/>',
+  leaf:'<path d="M5 19c0-9 6-15 15-15 0 9-6 15-15 15zM5 19l8-8"/>',
+  view:'<path d="M2 18l6-7 4 4 3-3 7 6z"/><circle cx="16" cy="6" r="2"/>',
+  sofa:'<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M2 12a2 2 0 0 1 4 0v2h12v-2a2 2 0 0 1 4 0v5H2zM5 17v2M19 17v2"/>',
+  table:'<path d="M3 8h18M5 8v11M19 8v11M8 8v5h8V8"/>',
+  wifi:'<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/>',
+  car:'<path d="M5 16V11l2-5h10l2 5v5M3 16h18v3H3zM5 11h14"/><circle cx="7.5" cy="16" r=".5"/>',
+  fire:'<path d="M12 21a6 6 0 0 1-6-6c0-4 3-5 3-9 3 2 4 4 4 6 1-1 2-2 2-4 2 2 3 4 3 7a6 6 0 0 1-6 6z"/>',
+  snow:'<path d="M12 2v20M4 7l16 10M20 7L4 17"/>',
+  pin:'<path d="M12 21s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
+  walk:'<circle cx="13" cy="4" r="2"/><path d="M11 8l-3 4 3 2-1 7M11 8l4 2 2 4M13 14l3 7"/>',
+  egg:'<path d="M12 3c4 0 7 6 7 11a7 7 0 0 1-14 0c0-5 3-11 7-11z"/>',
+  cherry:'<circle cx="7" cy="17" r="4"/><circle cx="17" cy="15" r="4"/><path d="M7 13c1-5 4-8 9-10M17 11c-1-4-1-6-1-8"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+  chat:'<path d="M4 20l1.5-4A8 8 0 1 1 9 19z"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+  check:'<path d="M5 12l5 5 9-10"/>',
+  bread:'<path d="M4 12a4 4 0 0 1 2-7h12a4 4 0 0 1 2 7v7H4z"/>',
+  bike:'<circle cx="6" cy="16" r="3.5"/><circle cx="18" cy="16" r="3.5"/><path d="M6 16l4-8h5l3 8M10 8l2 8h-6M14 5h2"/>',
+  wave:'<path d="M2 12c3-3 5-3 8 0s5 3 8 0 3-2 4-2M2 17c3-3 5-3 8 0s5 3 8 0"/>',
+  pool:'<path d="M2 18c2-2 4-2 6 0s4 2 6 0 4-2 6 0M7 15V5a2 2 0 0 1 4 0M13 15V5a2 2 0 0 1 4 0M7 9h6"/>',
+  jar:'<path d="M8 3h8M7 6h10v13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2zM7 11h10"/>',
+  paw:'<circle cx="7" cy="9" r="1.8"/><circle cx="12" cy="6.5" r="1.8"/><circle cx="17" cy="9" r="1.8"/><path d="M12 12c3 0 5 3 5 5a2.5 2.5 0 0 1-3 2.3c-1-.3-1.3-.3-2-.3s-1 0-2 .3A2.5 2.5 0 0 1 7 17c0-2 2-5 5-5z"/>',
+  hammock:'<path d="M3 5v14M21 5v14M3 8c4 7 14 7 18 0"/>',
+  castle:'<path d="M4 21V8h3v3h3V8h4v3h3V8h3v13zM10 21v-5h4v5"/>',
+  x:'<path d="M6 6l12 12M18 6L6 18"/>',
+  spark:'<path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/>'
+};
+const ic = (n, cls='') => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
+
+/* ---------- mascot: Ginja the hen ---------- */
+let uid = 0;
+function hen(pose='wave', label='Ginja the hen, the Ginjas-fit mascot'){
+  const u = 'h'+(uid++);
+  const wing = pose==='wave'
+    ? `<path d="M150 118c14-10 22-28 24-46 1-6 8-7 9-1 3 22-6 44-24 58z" fill="#fff" stroke="#E6D5C6" stroke-width="2"/>
+       <path d="M170 66c3-4 8-4 9 1M176 70c3-3 8-2 8 2" stroke="#E6D5C6" stroke-width="2" fill="none" stroke-linecap="round"/>`
+    : `<path d="M142 112c18 4 26 22 18 40-10 4-24-2-30-14z" fill="#fff" stroke="#E6D5C6" stroke-width="2"/>`;
+  return `<svg viewBox="0 0 200 200" role="img" aria-label="${label}">
+  <defs>
+    <radialGradient id="${u}b" cx="45%" cy="35%" r="70%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F1E6DC"/></radialGradient>
+    <linearGradient id="${u}c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0373D"/><stop offset="1" stop-color="#B3141C"/></linearGradient>
+  </defs>
+  <ellipse cx="100" cy="188" rx="46" ry="6" fill="#000" opacity=".12"/>
+  <path d="M84 168v14M78 182h12M116 168v14M110 182h12" stroke="#F2861D" stroke-width="5" stroke-linecap="round"/>
+  <path d="M40 112c-18-6-26-24-18-38 10 2 16 10 20 18-2-14 2-26 12-30 4 12 2 24-2 34z" fill="#fff" stroke="#E6D5C6" stroke-width="2"/>
+  <ellipse cx="100" cy="128" rx="58" ry="48" fill="url(#${u}b)" stroke="#E6D5C6" stroke-width="2"/>
+  <path d="M70 124c8 10 22 14 34 10" stroke="#E6D5C6" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <circle cx="104" cy="76" r="38" fill="url(#${u}b)" stroke="#E6D5C6" stroke-width="2"/>
+  <g fill="url(#${u}c)">
+    <circle cx="86" cy="42" r="11"/><circle cx="103" cy="34" r="14"/><circle cx="120" cy="42" r="11"/><ellipse cx="104" cy="46" rx="22" ry="7"/>
+  </g>
+  <path d="M92 104h26l-4 16-18 2z" fill="url(#${u}c)"/>
+  <path d="M66 104c20 10 56 10 76 0l2 12c-22 12-58 12-80 0z" fill="#B3141C"/>
+  <path d="M96 110h20l-2 14-8 6-8-6z" fill="#fff" stroke="#8A0F16" stroke-width="1.5"/>
+  <path d="M110 115h-7v8h7v-3h-3" stroke="#B3141C" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M104 101c-5 0-6 8-2 12 3 3 8 1 7-5-1-4-2-7-5-7z" fill="#E3262E"/>
+  <path d="M94 84c4-6 16-6 20 0l-10 12z" fill="#F7931E" stroke="#D96F10" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M94 84c4-2 16-2 20 0" stroke="#D96F10" stroke-width="1.5" fill="none"/>
+  <ellipse cx="88" cy="72" rx="6" ry="7" fill="#221B1B"/><ellipse cx="120" cy="72" rx="6" ry="7" fill="#221B1B"/>
+  <circle cx="90" cy="69" r="2.2" fill="#fff"/><circle cx="122" cy="69" r="2.2" fill="#fff"/>
+  <path d="M80 60c4-3 10-3 14 0M114 60c4-3 10-3 14 0" stroke="#221B1B" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <ellipse cx="78" cy="86" rx="7" ry="4" fill="#F28C8C" opacity=".6"/><ellipse cx="132" cy="86" rx="7" ry="4" fill="#F28C8C" opacity=".6"/>
+  ${wing}
+  </svg>`;
+}
+
+/* ---------- illustrated scenes (self-contained "photos") ---------- */
+function scene(o){
+  const u='s'+(uid++);
+  const p = Object.assign({sky1:'#FFD7B8',sky2:'#FFF1E3',sun:'#FFB36B',sunY:70,h1:'#8FA66A',h2:'#6F8C4E',h3:'#4E6B38',house:true,roof:'#B3141C',wall:'#FFF8F0',trees:3,cherries:true,hen:false,label:'Countryside view'},o);
+  let trees='';
+  const tx=[46,300,352,96,250];
+  for(let i=0;i<p.trees;i++){
+    const x=tx[i], y=150+(i%2)*10;
+    trees+=`<path d="M${x} ${y+30}v-26" stroke="#5B3A29" stroke-width="5"/>
+      <circle cx="${x}" cy="${y}" r="20" fill="${p.h3}"/><circle cx="${x-12}" cy="${y+6}" r="14" fill="${p.h3}"/><circle cx="${x+12}" cy="${y+6}" r="14" fill="${p.h3}"/>
+      ${p.cherries?`<circle cx="${x-8}" cy="${y+2}" r="2.6" fill="#D11A24"/><circle cx="${x+6}" cy="${y-6}" r="2.6" fill="#D11A24"/><circle cx="${x+10}" cy="${y+10}" r="2.6" fill="#D11A24"/><circle cx="${x-14}" cy="${y+12}" r="2.6" fill="#D11A24"/>`:''}`;
+  }
+  const house = p.house ? `<g>
+    <rect x="150" y="128" width="104" height="58" fill="${p.wall}"/>
+    <rect x="150" y="178" width="104" height="8" fill="#F2C46B"/>
+    <path d="M142 130l60-34 60 34z" fill="${p.roof}"/>
+    <path d="M142 130h120" stroke="#7A0E14" stroke-width="3"/>
+    <rect x="164" y="142" width="16" height="18" fill="#3B6E8F"/><rect x="164" y="142" width="16" height="18" fill="none" stroke="#F2C46B" stroke-width="3"/>
+    <rect x="224" y="142" width="16" height="18" fill="#3B6E8F"/><rect x="224" y="142" width="16" height="18" fill="none" stroke="#F2C46B" stroke-width="3"/>
+    <rect x="194" y="150" width="16" height="36" fill="#7A0E14"/>
+    <rect x="232" y="100" width="10" height="18" fill="${p.wall}"/>
+  </g>` : '';
+  const henS = p.hen ? `<g transform="translate(80 184) scale(.16)">${hen('stand').replace(/^<svg[^>]*>|<\/svg>$/g,'')}</g>`:'';
+  return `<svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${p.label}">
+  <defs><linearGradient id="${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.sky1}"/><stop offset="1" stop-color="${p.sky2}"/></linearGradient></defs>
+  <rect width="400" height="240" fill="url(#${u})"/>
+  <circle cx="310" cy="${p.sunY}" r="26" fill="${p.sun}" opacity=".9"/>
+  <path d="M0 150C80 110 150 120 220 140S340 110 400 130V240H0z" fill="${p.h1}"/>
+  <path d="M0 180C70 150 160 160 240 175S350 160 400 170V240H0z" fill="${p.h2}"/>
+  ${house}${trees}
+  <path d="M0 205C90 190 200 196 400 200V240H0z" fill="${p.h3}"/>
+  <path d="M0 214C100 204 220 210 400 212" stroke="${p.h1}" stroke-width="2" fill="none" opacity=".6"/>
+  ${henS}
+  </svg>`;
+}
+function room(o){
+  const p=Object.assign({wall:'#F6E7D8',floor:'#C58D5E',bed:'#B3141C',kind:'bed',label:'Interior'},o);
+  let inner='';
+  if(p.kind==='bed') inner=`<rect x="120" y="150" width="170" height="44" rx="6" fill="#fff"/><rect x="120" y="164" width="170" height="30" rx="4" fill="${p.bed}"/><rect x="130" y="140" width="50" height="18" rx="8" fill="#fff" stroke="#E6D5C6"/><rect x="230" y="140" width="50" height="18" rx="8" fill="#fff" stroke="#E6D5C6"/><rect x="112" y="118" width="186" height="30" rx="6" fill="#6B3B22"/><rect x="298" y="162" width="32" height="32" fill="#8A5634"/><path d="M314 162v-18" stroke="#221B1B" stroke-width="2"/><path d="M304 144h20l-4-12h-12z" fill="#F2C46B"/>`;
+  if(p.kind==='kitchen') inner=`<rect x="40" y="150" width="200" height="46" fill="#fff"/><rect x="40" y="144" width="200" height="8" fill="#8A5634"/><rect x="60" y="160" width="40" height="30" fill="none" stroke="#E6D5C6" stroke-width="2"/><rect x="120" y="160" width="40" height="30" fill="none" stroke="#E6D5C6" stroke-width="2"/><rect x="180" y="160" width="40" height="30" fill="none" stroke="#E6D5C6" stroke-width="2"/><g fill="none" stroke="#2F5E86" stroke-width="2">${[0,1,2,3,4].map(i=>`<rect x="${40+i*40}" y="112" width="40" height="30" fill="#EAF2F8"/><circle cx="${60+i*40}" cy="127" r="7"/>`).join('')}</g><rect x="270" y="160" width="90" height="8" fill="#6B3B22"/><path d="M280 168v28M350 168v28" stroke="#6B3B22" stroke-width="4"/><circle cx="300" cy="152" r="8" fill="${p.bed}"/><circle cx="324" cy="154" r="6" fill="#F2861D"/>`;
+  if(p.kind==='living') inner=`<rect x="90" y="150" width="190" height="40" rx="10" fill="${p.bed}"/><rect x="80" y="140" width="22" height="50" rx="8" fill="${p.bed}"/><rect x="268" y="140" width="22" height="50" rx="8" fill="${p.bed}"/><rect x="120" y="140" width="40" height="22" rx="6" fill="#F2C46B"/><rect x="200" y="140" width="40" height="22" rx="6" fill="#fff"/><rect x="310" y="120" width="50" height="76" fill="#8A5634"/><path d="M320 120c4-16 26-16 30 0" fill="#FF8A3D"/>`;
+  return `<svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${p.label}">
+  <rect width="400" height="196" fill="${p.wall}"/><rect y="196" width="400" height="44" fill="${p.floor}"/>
+  <path d="M0 196h400" stroke="#6B3B22" stroke-width="3"/>
+  <g><rect x="160" y="30" width="80" height="70" rx="4" fill="#BFE0F0"/><path d="M160 80c20-14 40-8 80-18v38h-80z" fill="#8FA66A"/><circle cx="222" cy="52" r="8" fill="#FFB36B"/><path d="M200 30v70M160 65h80" stroke="#fff" stroke-width="4"/><rect x="160" y="30" width="80" height="70" rx="4" fill="none" stroke="#F2C46B" stroke-width="5"/></g>
+  ${inner}
+  </svg>`;
+}
+
+/* ---------- content ---------- */
+const STAYS = [
+  { id:'studio', name:'Farm Studio', price:85, guests:2, size:'28 m²', tagline:'A snug studio for two above the old grain barn.',
+    desc:'Whitewashed walls, a hand-built double bed and a terrace that faces the ginja orchard. Mornings start with birdsong and fresh eggs from our hens; evenings end with the sun dropping behind the Serra de Montejunto. Ideal for couples who want to slow down.',
+    feats:[['users','2 guests'],['bed','1 double bed'],['bath','Private bathroom'],['kitchen','Kitchenette'],['sun','Private terrace'],['view','Countryside view'],['wifi','Wi-Fi'],['snow','Ceiling fan']],
+    scenes:[{sky1:'#FFC6A0',sky2:'#FFF0E0',label:'Farm Studio exterior at sunrise'},{kind:'bed',bed:'#B3141C',label:'Farm Studio bedroom'},{kind:'kitchen',bed:'#E3262E',label:'Farm Studio kitchenette'}],
+    cmp:{bedrooms:'Studio',beds:'1 double',kitchen:'Kitchenette',outdoor:'Terrace',garden:false,family:false,pets:false} },
+  { id:'garden', name:'Garden Apartment', price:115, guests:4, size:'52 m²', tagline:'Ground-floor apartment opening onto the herb and vegetable garden.',
+    desc:'Step straight from your living room into the kitchen garden, where guests are welcome to pick herbs, tomatoes and lettuces in season. The bedroom has a double bed, and the living room sofa opens into a comfortable bed for two more guests.',
+    feats:[['users','Up to 4 guests'],['door','1 bedroom'],['sofa','Living room + sofa bed'],['kitchen','Full kitchen'],['bath','Private bathroom'],['leaf','Garden access'],['wifi','Wi-Fi'],['car','Free parking']],
+    scenes:[{sky1:'#BFE3F2',sky2:'#F4FAF6',sun:'#FFD27A',sunY:48,label:'Garden Apartment and kitchen garden'},{kind:'living',bed:'#5C0F1A',wall:'#F3E6D6',label:'Garden Apartment living room'},{kind:'bed',bed:'#F2561D',label:'Garden Apartment bedroom'}],
+    cmp:{bedrooms:'1',beds:'1 double + sofa bed',kitchen:'Full',outdoor:'Garden',garden:true,family:true,pets:true} },
+  { id:'family', name:'Family Farm Apartment', price:165, guests:6, size:'85 m²', tagline:'Two bedrooms, room to spread out, and the animals right next door.',
+    desc:'Our largest apartment sits in the restored farmhouse, a short walk from the goat pen and the hen house. Two bedrooms, a long dining table for shared meals and a covered outdoor seating area make it easy for families and friends to settle in. Cots and high chairs on request.',
+    feats:[['users','Up to 6 guests'],['door','2 bedrooms'],['table','Kitchen + dining area'],['bath','Private bathroom'],['sofa','Outdoor seating area'],['view','Farm & countryside views'],['wifi','Wi-Fi'],['paw','Next to the animals']],
+    scenes:[{sky1:'#FFB08A',sky2:'#FFE9D6',sun:'#FF8A3D',sunY:96,hen:true,label:'Family Farm Apartment with hens outside'},{kind:'kitchen',bed:'#B3141C',wall:'#F8EBDD',label:'Family Farm Apartment kitchen and dining'},{kind:'bed',bed:'#5C0F1A',label:'Family Farm Apartment main bedroom'}],
+    cmp:{bedrooms:'2',beds:'1 double + 2 twins',kitchen:'Full + dining',outdoor:'Covered seating',garden:true,family:true,pets:false} },
+  { id:'cottage', name:'Countryside Cottage', price:135, guests:4, size:'60 m²', tagline:'An independent stone cottage at the quiet edge of the olive grove.',
+    desc:'Set apart from the main farm, the cottage is for guests who want real quiet. Thick stone walls keep it cool in summer; the wood burner keeps it cosy in winter. The private terrace looks out over olive trees and the valley toward Óbidos.',
+    feats:[['users','Up to 4 guests'],['farm','Independent cottage'],['door','Bedroom + living area'],['kitchen','Full kitchen'],['sun','Private terrace'],['fire','Wood burner'],['leaf','Surrounded by nature'],['car','Free parking']],
+    scenes:[{sky1:'#F6A48A',sky2:'#FBE3D2',sun:'#FFCF7A',sunY:118,roof:'#7A0E14',wall:'#EADBC8',cherries:false,label:'Countryside Cottage at sunset'},{kind:'living',bed:'#B3141C',wall:'#EADBC8',floor:'#9C6B45',label:'Countryside Cottage living area'},{kind:'bed',bed:'#221B1B',wall:'#EADBC8',label:'Countryside Cottage bedroom'}],
+    cmp:{bedrooms:'1',beds:'1 double + sofa bed',kitchen:'Full',outdoor:'Private terrace',garden:true,family:true,pets:true} }
+];
+const stayById = id => STAYS.find(s=>s.id===id);
+function stayPhoto(s,i=0){ const sc=s.scenes[i]; return sc.kind ? room(sc) : scene(sc); }
+
+const FARM = [
+  {icon:'sun', t:'Life on the farm', d:'Ginjas-fit is a working quinta of about 6 hectares. We grow ginja sour cherries, olives, Rocha pears and vegetables, and keep hens, goats, sheep and one opinionated donkey. Guests are welcome to join the morning rounds.'},
+  {icon:'view', t:'The Portuguese countryside', d:'We sit in the Oeste region, between the Atlantic coast and the Serra de Montejunto. Rolling hills, vineyards, orchards and whitewashed villages, with the sea about 20 minutes away.'},
+  {icon:'paw', t:'Farm animals', d:'Meet our flock of 30 free-range hens (Ginja is the boss), four goats, a small flock of sheep, Chico the donkey and two barn cats. Egg collecting happens every morning at 9:00.'},
+  {icon:'leaf', t:'Gardens & surroundings', d:'A kitchen garden, a lavender walk, the ginja orchard that blossoms white in March, and an olive grove with shaded paths down to a seasonal stream.'},
+  {icon:'jar', t:'Local products', d:'Ginja liqueur from our own cherries, free-range eggs, wildflower honey, olive oil, Rocha pear jam and bread from the wood oven. A welcome basket waits in every apartment.'},
+  {icon:'hammock', t:'Outdoor relaxation', d:'A saltwater pool (May to October), hammocks under the fig trees, a shaded pergola with a barbecue, and quiet reading corners around the gardens.'},
+  {icon:'walk', t:'Walking routes', d:'Three marked trails start at our gate, from an easy 3 km orchard loop to a 12 km hike toward Óbidos. Maps are in each apartment and in the Explore tab.'},
+  {icon:'castle', t:'Places nearby', d:'Medieval Óbidos, Nazaré, the Óbidos Lagoon, Alcobaça Monastery and the Berlengas islands are all within an easy day trip.'}
+];
+const ANIMALS = [
+  {n:'Ginja', k:'Head hen', d:'Our mascot. Friendly, nosy and always first to greet new guests.', sc:{sky1:'#FFD7B8',hen:true,house:false,trees:2}},
+  {n:'Chico', k:'Donkey', d:'Loves carrots and slow walks. Brush him on Tuesday and Friday mornings.', sc:{sky1:'#BFE3F2',sky2:'#F4FAF6',house:false,trees:1,cherries:false}},
+  {n:'The goats', k:'Four of them', d:'Pipoca, Nata, Figo and Lua. Feeding time is 17:30.', sc:{sky1:'#FFC6A0',house:true,trees:1,roof:'#5C0F1A'}},
+  {n:'The sheep', k:'A small flock', d:'They keep the olive grove tidy and graze by the lower trail.', sc:{sky1:'#F6A48A',sky2:'#FBE3D2',house:false,trees:3,cherries:false,sunY:120}}
+];
+const ACTIVITIES = [
+  {icon:'egg', t:'Morning egg collecting', d:'Daily at 9:00 with Ginja and the flock. Free.', when:'Daily'},
+  {icon:'cherry', t:'Ginja tasting', d:'Our cherry liqueur served in a chocolate cup, the Óbidos way. €8 per adult.', when:'Thu & Sat'},
+  {icon:'bread', t:'Wood-oven bread class', d:'Knead, shape and bake Portuguese broa. €25, bread included.', when:'Wednesday'},
+  {icon:'leaf', t:'Cherry & pear picking', d:'Pick ginja cherries in June and Rocha pears in August.', when:'Seasonal'},
+  {icon:'bike', t:'Bike rental', d:'Six bikes for the quiet lanes to the lagoon. €12 per day.', when:'Any day'},
+  {icon:'sun', t:'Sunset yoga', d:'On the orchard lawn with a local teacher. €15.', when:'May – Sept'}
+];
+const PLACES = [
+  {t:'Óbidos', d:'Walled medieval town, famous for ginjinha in chocolate cups and its book shops.', km:'8 km', min:'12 min'},
+  {t:'Caldas da Rainha', d:'Daily open-air fruit market in Praça da Fruta and the ceramics museum.', km:'14 km', min:'18 min'},
+  {t:'Foz do Arelho & Óbidos Lagoon', d:'Calm lagoon for paddling and kayaking where it meets the Atlantic.', km:'19 km', min:'22 min'},
+  {t:'Peniche & Berlengas', d:'Fishing town, surf beaches and boat trips to the Berlengas nature reserve.', km:'28 km', min:'30 min'},
+  {t:'Nazaré', d:'Traditional beach town and the famous giant waves of Praia do Norte in winter.', km:'40 km', min:'35 min'},
+  {t:'Alcobaça Monastery', d:'UNESCO World Heritage Cistercian monastery, and excellent pastries next door.', km:'42 km', min:'40 min'},
+  {t:'Lisbon', d:'The capital, an easy day trip by car along the A8 motorway.', km:'85 km', min:'1 h'}
+];
+const TRAILS = [
+  {t:'Orchard loop', d:'Through the ginja orchard and lavender walk. Flat, pram-friendly.', len:'3 km', time:'1 h', lvl:'Easy'},
+  {t:'Olive grove & stream', d:'Shaded paths down to the seasonal stream and back via the sheep pasture.', len:'6 km', time:'2 h', lvl:'Moderate'},
+  {t:'Ridge path to Óbidos', d:'Country lanes and a hill ridge ending at the town gate. Taxi back about €15.', len:'12 km', time:'3.5 h', lvl:'Moderate'}
+];
+
+/* ---------- state ---------- */
+const S = {
+  view:'home', stayId:null, hist:[],
+  cmpMode:'cards',
+  b:{checkIn:null, checkOut:null, stayId:'garden', adults:2, children:0, name:'', email:'', phone:'', message:''},
+  calY:null, calM:null, submitted:null
+};
+const today = new Date(); today.setHours(0,0,0,0);
+S.calY = today.getFullYear(); S.calM = today.getMonth();
+
+const esc = s => String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad = n => String(n).padStart(2,'0');
+const key = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parse = k => { const [y,m,d]=k.split('-').map(Number); return new Date(y,m-1,d); };
+const fmt = (k,opt={weekday:'short',day:'numeric',month:'short'}) => k ? parse(k).toLocaleDateString('en-GB',opt) : '—';
+const nights = () => (S.b.checkIn && S.b.checkOut) ? Math.round((parse(S.b.checkOut)-parse(S.b.checkIn))/864e5) : 0;
+const eur = n => '€'+n.toLocaleString('en-GB');
+
+/* "Booked" sample dates so the calendar feels real */
+const BLOCKED = new Set();
+(function(){ const base=new Date(today); [[3,5],[17,20],[34,38],[52,55]].forEach(([a,b])=>{for(let i=a;i<b;i++){const d=new Date(base);d.setDate(d.getDate()+i);BLOCKED.add(key(d));}}); })();
+
+/* ---------- navigation ---------- */
+const TABS = [['home','Home','home'],['stays','Stays','bed'],['farm','Farm','farm'],['explore','Explore','compass'],['contact','Contact','phone']];
+const tabOf = v => ({detail:'stays', book:'stays', done:'stays'})[v] || v;
+
+function go(view, opts={}){
+  if(!opts.replace) S.hist.push({view:S.view, stayId:S.stayId});
+  S.view=view; if(opts.stayId!==undefined) S.stayId=opts.stayId;
+  render(); window.scrollTo(0,0);
+  document.getElementById('main').focus({preventScroll:true});
+}
+function goBack(){ const p=S.hist.pop(); if(p){S.view=p.view;S.stayId=p.stayId;} else S.view='home'; render(); window.scrollTo(0,0); }
+
+function renderNav(){
+  const cur=tabOf(S.view);
+  document.getElementById('nav').innerHTML = TABS.map(([v,l,i])=>
+    `<button data-tab="${v}" ${cur===v?'aria-current="page"':''}><span class="ic">${ic(i)}</span>${l}</button>`).join('');
+}
+function renderTop(){
+  const sub = ['detail','book','done'].includes(S.view) && S.view!=='done';
+  const titles={detail:stayById(S.stayId)?.name||'', book:'Plan your stay'};
+  document.getElementById('top').innerHTML = sub
+    ? `<button class="back" data-act="back" aria-label="Go back">${ic('back')}</button><h2 style="font-size:19px">${esc(titles[S.view])}</h2><span class="spacer"></span>`
+    : `<button class="brand" data-go="home" aria-label="Ginjas-fit home"><span class="m">${LOGO}</span>Ginjas-fit</button><span class="spacer"></span>${S.view!=='done'?'<button class="cta-mini" data-act="plan">Plan your stay</button>':''}`;
+}
+
+/* ---------- views ---------- */
+function stayCard(s){
+  return `<button class="scard" data-stay="${s.id}" aria-label="${esc(s.name)}, from ${eur(s.price)} per night">
+    <div class="ph">${stayPhoto(s)}<span class="price-tag">${eur(s.price)} <small>/ night</small></span></div>
+    <div class="body"><h3>${s.name}</h3><p class="muted" style="font-size:14.5px;margin-top:4px">${s.tagline}</p>
+      <div class="meta">${s.feats.slice(0,3).map(f=>`<span class="chip">${ic(f[0])}${f[1]}</span>`).join('')}</div></div></button>`;
+}
+function vHome(){
+  const f = stayById('cottage');
+  return `
+  <section class="hero" aria-label="Welcome">
+    <div class="scene">${scene({sky1:'#FF9D6E',sky2:'#FFE2C8',sun:'#FFE3A3',sunY:92,label:'Ginja orchard and farmhouse in the hills of Oeste, Portugal'})}</div>
+    <span class="bubble">Olá! I'm Ginja.</span>
+    <div class="mascot">${hen('wave')}</div>
+    <div class="overlay">
+      <h1>Farm stays among the cherry trees</h1>
+      <p>Four apartments and a stone cottage on a working farm near Óbidos, in Portugal's Oeste countryside.</p>
+    </div>
+  </section>
+  <div class="tiles" aria-hidden="true"></div>
+  <div class="sec" style="padding-top:18px">
+    <button class="btn btn-primary btn-block" data-act="plan">${ic('bed')}Plan your stay</button>
+    <p class="muted" style="text-align:center;font-size:13.5px;margin-top:10px">No account needed. Send a request in two minutes.</p>
+  </div>
+
+  <section class="sec intro">
+    <h2>Welcome to Ginjas-fit</h2>
+    <p>We're a family-run quinta named after the ginja, the sour cherry that grows all over this corner of Portugal. Stay a few nights, collect the morning eggs, taste our cherry liqueur and walk the olive groves to medieval Óbidos.</p>
+    <div class="facts"><div class="fact"><b>6 ha</b><span>of orchards & olives</span></div><div class="fact"><b>20 min</b><span>to the Atlantic</span></div><div class="fact"><b>1 h</b><span>from Lisbon</span></div></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Featured stay</h2></div>
+    <button class="featured" data-stay="${f.id}">
+      <div class="ph">${stayPhoto(f)}</div>
+      <div class="body"><div><span class="badge">Guest favourite</span><h3 style="font-size:22px">${f.name}</h3><p>${f.tagline}</p></div>
+      <div class="from"><span>from</span><b>${eur(f.price)}</b><span>per night</span></div></div>
+    </button>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Where you can stay</h2><button class="link" data-go="stays">Compare all</button></div>
+    <div class="rail">${STAYS.map(stayCard).join('')}</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Farm highlights</h2><button class="link" data-go="farm">About the farm</button></div>
+    <div class="grid2">${ANIMALS.slice(0,2).concat([
+      {n:'Saltwater pool',k:'May – Oct',d:'Surrounded by lavender, with views over the orchard.',sc:{sky1:'#BFE3F2',sky2:'#EAF7FB',house:false,trees:2,cherries:false}},
+      {n:'Farm shop',k:'Daily 9–19',d:'Ginja, honey, eggs, olive oil and pear jam.',sc:{sky1:'#FFD7B8',roof:'#5C0F1A',trees:1}}
+    ]).map(a=>`<div class="tile"><div class="ph">${scene(Object.assign({label:a.n},a.sc))}</div><div class="t"><h3>${a.n}</h3><p>${a.d}</p></div></div>`).join('')}</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Things to do here</h2><button class="link" data-go="explore">See more</button></div>
+    <div class="list">${ACTIVITIES.slice(0,4).map(a=>`<div class="row"><div class="ico">${ic(a.icon)}</div><div><h3>${a.t}</h3><p>${a.d}</p></div><span class="side">${a.when}</span></div>`).join('')}</div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Find us</h2></div>
+    ${mapCard()}
+  </section>
+  <div class="foot">Ginjas-fit · Quinta das Ginjeiras, Óbidos, Portugal<br><span style="font-size:11.5px;word-break:break-all">v${APP.version} · ${APP.bundleId}</span></div>`;
+}
+function mapCard(){
+  return `<div class="map">
+    <svg viewBox="0 0 400 220" role="img" aria-label="Map of the area around Ginjas-fit, between the Atlantic coast, Óbidos and Caldas da Rainha">
+      <rect width="400" height="220" fill="#EAF2E1"/>
+      <path d="M0 0h70c-10 40 10 70-4 110s12 70 0 110H0z" fill="#BFE0F0"/>
+      <path d="M70 52c30-6 44 10 40 26s-26 20-44 12z" fill="#BFE0F0"/>
+      <text x="14" y="120" font-size="11" fill="#2F5E86" font-family="Figtree,sans-serif" transform="rotate(-90 14 120)">Atlantic</text>
+      <path d="M40 210C120 170 180 150 240 120S340 60 400 40" stroke="#F2C46B" stroke-width="6" fill="none"/>
+      <text x="330" y="36" font-size="11" fill="#6E5E5A" font-family="Figtree,sans-serif">A8 → Lisbon</text>
+      <path d="M150 20C170 60 200 90 230 100" stroke="#fff" stroke-width="4" fill="none"/>
+      <circle cx="160" cy="36" r="5" fill="#5C0F1A"/><text x="170" y="40" font-size="12" font-family="Figtree,sans-serif" fill="#221B1B">Caldas da Rainha</text>
+      <circle cx="196" cy="118" r="5" fill="#5C0F1A"/><text x="130" y="140" font-size="12" font-family="Figtree,sans-serif" fill="#221B1B">Óbidos</text>
+      <circle cx="84" cy="70" r="4" fill="#2F5E86"/><text x="92" y="62" font-size="11" font-family="Figtree,sans-serif" fill="#2F5E86">Lagoon</text>
+      <g transform="translate(262 96)"><circle r="16" fill="#E3262E" opacity=".2"/><path d="M0 8s9-8 9-15a9 9 0 0 0-18 0c0 7 9 15 9 15z" fill="#B3141C"/><circle cy="-7" r="3" fill="#fff"/></g>
+      <text x="238" y="132" font-size="13" font-weight="700" font-family="Figtree,sans-serif" fill="#B3141C">Ginjas-fit</text>
+    </svg>
+    <div class="body"><h3>Quinta das Ginjeiras, Óbidos</h3><p class="muted" style="font-size:14.5px;margin-top:4px">Leiria district, Oeste region. 12 minutes from Óbidos, 1 hour north of Lisbon Airport via the A8.</p></div>
+  </div>`;
+}
+function vStays(){
+  const rows=[['Guests',s=>`Up to ${s.guests}`],['Size',s=>s.size],['Bedrooms',s=>s.cmp.bedrooms],['Beds',s=>s.cmp.beds],['Kitchen',s=>s.cmp.kitchen],['Outdoor',s=>s.cmp.outdoor],['Garden access',s=>s.cmp.garden?'<span class="yes">Yes</span>':'<span class="no">No</span>'],['Good for families',s=>s.cmp.family?'<span class="yes">Yes</span>':'<span class="no">Couples</span>'],['Pets allowed',s=>s.cmp.pets?'<span class="yes">Yes</span>':'<span class="no">No</span>'],['From',s=>`<b>${eur(s.price)}</b> / night`]];
+  return `<div class="page-title"><h1>Accommodation</h1><p>Four ways to stay on the farm. Every stay has a private bathroom, Wi-Fi, bed linen, towels and a welcome basket of farm produce.</p></div>
+  <div class="sec" style="padding-top:16px">
+    <div class="seg" role="group" aria-label="View as"><button data-cmp="cards" aria-pressed="${S.cmpMode==='cards'}">Browse</button><button data-cmp="table" aria-pressed="${S.cmpMode==='table'}">Compare</button></div>
+    ${S.cmpMode==='cards'
+      ? `<div class="list" style="gap:16px">${STAYS.map(stayCard).join('')}</div>`
+      : `<div class="cmp-wrap"><table class="cmp"><thead><tr><th scope="col"><span class="sr"></span></th>${STAYS.map(s=>`<th scope="col">${s.name}</th>`).join('')}</tr></thead><tbody>${rows.map(([l,f])=>`<tr><th scope="row">${l}</th>${STAYS.map(s=>`<td>${f(s)}</td>`).join('')}</tr>`).join('')}<tr><th scope="row"></th>${STAYS.map(s=>`<td><button class="link" data-stay="${s.id}">View</button></td>`).join('')}</tr></tbody></table></div>
+         <p class="muted" style="font-size:13px;margin-top:8px">Swipe the table sideways to see every stay.</p>`}
+  </div>
+  <div class="sec"><div class="note">${ic('info')}<div>Prices are indicative per night for the whole unit. Minimum stay is 2 nights (3 nights in July and August). A tourist tax of €2 per adult per night applies.</div></div></div>`;
+}
+function vDetail(){
+  const s=stayById(S.stayId);
+  return `<div class="gallery" id="gal">${s.scenes.map((sc,i)=>`<div>${stayPhoto(s,i)}<span class="cap">${i+1} / ${s.scenes.length} · ${esc(sc.label.replace(s.name+' ',''))}</span></div>`).join('')}</div>
+  <div class="dots" id="dots">${s.scenes.map((_,i)=>`<span class="${i?'':'on'}"></span>`).join('')}</div>
+  <div class="sec" style="padding-top:16px">
+    <h1 style="font-size:30px">${s.name}</h1>
+    <div class="meta" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"><span class="chip">${ic('users')}Up to ${s.guests} guests</span><span class="chip">${ic('farm')}${s.size}</span></div>
+    <p style="margin-top:14px;font-size:16.5px;line-height:1.65">${s.desc}</p>
+  </div>
+  <div class="sec"><h2 style="margin-bottom:12px">What's included</h2><div class="amen">${s.feats.map(f=>`<div>${ic(f[0])}${f[1]}</div>`).join('')}</div></div>
+  <div class="sec"><h2 style="margin-bottom:12px">Good to know</h2>
+    <div class="list">
+      <div class="row"><div class="ico">${ic('clock')}</div><div><h3>Check-in 15:00 – 20:00</h3><p>Check-out by 11:00. Late arrivals can be arranged.</p></div></div>
+      <div class="row"><div class="ico">${ic('egg')}</div><div><h3>Farm breakfast basket</h3><p>Eggs, bread, honey and jam delivered to your door. €12 per adult, on request.</p></div></div>
+    </div>
+  </div>
+  <div class="sec"><div class="guide"><div class="m">${hen('stand','')}</div><div class="say"><b>Ginja says:</b> ${s.id==='family'?'Kids can help me collect eggs every morning at 9!':s.id==='studio'?'The terrace catches the best sunrise on the farm.':s.id==='garden'?'Help yourself to herbs from the garden. I won\'t tell.':'Bring a book. It\'s very quiet out here — apart from me.'}</div></div></div>
+  `;
+}
+function stickyDetail(){
+  const s=stayById(S.stayId);
+  return `<div class="stickybar"><div class="p"><b>${eur(s.price)}</b><span>per night, indicative</span></div><button class="btn btn-primary" data-act="choose" data-id="${s.id}">${ic('bed')}Choose dates</button></div>`;
+}
+function vFarm(){
+  return `<section class="hero" style="background:var(--burgundy)"><div class="scene" style="height:230px">${scene({sky1:'#FFC6A0',sky2:'#FFEBD8',hen:true,label:'Hens in front of the farmhouse'})}</div></section>
+  <div class="tiles thin" aria-hidden="true"></div>
+  <div class="page-title"><h1>The farm</h1><p>A working quinta in the Oeste hills, with cherry and pear orchards, olive trees, animals and plenty of shade.</p></div>
+  <div class="sec" style="padding-top:14px"><div class="guide"><div class="m">${hen('wave','')}</div><div class="say"><b>Hi, I'm Ginja.</b> Let me show you around. Mornings are my busiest time, so come find me at the hen house.</div></div></div>
+  <div class="sec"><div class="list">${FARM.map(f=>`<div class="row"><div class="ico">${ic(f.icon)}</div><div><h3>${f.t}</h3><p>${f.d}</p></div></div>`).join('')}</div></div>
+  <div class="sec"><h2 style="margin-bottom:12px">Meet the animals</h2><div class="grid2">${ANIMALS.map(a=>`<div class="tile"><div class="ph">${scene(Object.assign({label:a.n},a.sc))}</div><div class="t"><h3>${a.n}</h3><p><b style="color:var(--ink);font-weight:600">${a.k}.</b> ${a.d}</p></div></div>`).join('')}</div></div>
+  <div class="sec"><h2 style="margin-bottom:12px">Through the year</h2>
+    <div class="list">
+      <div class="row"><div class="ico">${ic('spark')}</div><div><h3>March – April</h3><p>The ginja orchard blossoms white. Lambs arrive.</p></div></div>
+      <div class="row"><div class="ico">${ic('cherry')}</div><div><h3>June</h3><p>Ginja harvest. Guests can help pick and see the liqueur being made.</p></div></div>
+      <div class="row"><div class="ico">${ic('leaf')}</div><div><h3>August – September</h3><p>Rocha pears and figs. Pool season in full swing.</p></div></div>
+      <div class="row"><div class="ico">${ic('jar')}</div><div><h3>October – November</h3><p>Olive picking and pressing. New olive oil in the farm shop.</p></div></div>
+    </div>
+  </div>
+  <div class="sec"><button class="btn btn-primary btn-block" data-act="plan">${ic('bed')}Plan your stay</button></div>`;
+}
+function vExplore(){
+  return `<div class="page-title"><h1>Explore</h1><p>Activities on the farm, walks from the gate, and the best of Portugal's Oeste within an hour's drive.</p></div>
+  <div class="sec" style="padding-top:16px"><h2 style="margin-bottom:12px">On the farm</h2>
+    <div class="list">${ACTIVITIES.map(a=>`<div class="row"><div class="ico">${ic(a.icon)}</div><div><h3>${a.t}</h3><p>${a.d}</p></div><span class="side">${a.when}</span></div>`).join('')}</div>
+    <p class="muted" style="font-size:13.5px;margin-top:10px">Book activities at reception or mention them in your stay request.</p>
+  </div>
+  <div class="sec"><h2 style="margin-bottom:12px">Walking routes from the farm</h2>
+    <div class="list">${TRAILS.map(t=>`<div class="row"><div class="ico">${ic('walk')}</div><div><h3>${t.t}</h3><p>${t.d}</p><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span class="chip">${t.len}</span><span class="chip">${t.time}</span><span class="chip">${t.lvl}</span></div></div></div>`).join('')}</div>
+  </div>
+  <div class="sec"><div class="guide"><div class="m">${hen('stand','')}</div><div class="say"><b>Local tip:</b> In Óbidos, try ginjinha in an edible chocolate cup. Ours is better, but don't tell them.</div></div></div>
+  <div class="sec"><h2 style="margin-bottom:12px">Places to visit</h2>
+    <div class="list">${PLACES.map(p=>`<div class="row"><div class="ico">${ic(p.t==='Nazaré'||p.t.includes('Lagoon')||p.t.includes('Peniche')?'wave':'castle')}</div><div><h3>${p.t}</h3><p>${p.d}</p></div><span class="side">${p.km}<br>${p.min}</span></div>`).join('')}</div>
+  </div>
+  <div class="sec">${mapCard()}</div>`;
+}
+function vContact(){
+  return `<div class="page-title"><h1>Contact</h1><p>We're Rita and João. Get in touch with any question before you send a stay request.</p></div>
+  <div class="sec" style="padding-top:16px"><div class="list">
+    <a class="row" href="tel:+351262000123" style="text-decoration:none;color:inherit"><div class="ico">${ic('phone')}</div><div><h3>Call us</h3><p>+351 262 000 123 · 9:00 – 20:00</p></div></a>
+    <a class="row" href="mailto:stay@ginjas-fit.pt" style="text-decoration:none;color:inherit"><div class="ico">${ic('mail')}</div><div><h3>Email</h3><p>stay@ginjas-fit.pt · reply within 24 hours</p></div></a>
+    <div class="row"><div class="ico">${ic('chat')}</div><div><h3>WhatsApp</h3><p>+351 912 000 456 · messages in English or Portuguese</p></div></div>
+    <div class="row"><div class="ico">${ic('pin')}</div><div><h3>Address</h3><p>Quinta das Ginjeiras, Estrada das Ginjeiras 14, 2510 Óbidos, Portugal</p></div></div>
+  </div></div>
+  <div class="sec"><h2 style="margin-bottom:12px">Getting here</h2><div class="list">
+    <div class="row"><div class="ico">${ic('car')}</div><div><h3>By car</h3><p>From Lisbon take the A8 north, exit 14 for Óbidos, then follow the signs for Ginjas-fit (1 hour). Free parking on the farm.</p></div></div>
+    <div class="row"><div class="ico">${ic('walk')}</div><div><h3>By bus</h3><p>Rodoviária do Oeste buses run from Lisbon Campo Grande to Óbidos. We can collect you from the stop for €10.</p></div></div>
+  </div></div>
+  <div class="sec">${mapCard()}</div>
+  <div class="sec faq"><h2 style="margin-bottom:4px">Questions</h2>
+    <details><summary>Do I need an account to book?</summary><p>No. Just send a stay request with your dates and contact details. We reply by email to confirm availability and payment.</p></details>
+    <details><summary>When do I pay?</summary><p>Only after we confirm your dates. We ask for a 30% deposit by bank transfer or MB WAY, with the rest paid on arrival.</p></details>
+    <details><summary>What is the cancellation policy?</summary><p>Free cancellation up to 14 days before arrival. After that the deposit is non-refundable.</p></details>
+    <details><summary>Are pets welcome?</summary><p>Well-behaved dogs are welcome in the Garden Apartment and the Countryside Cottage for €10 per night. Please keep them away from the hens.</p></details>
+    <details><summary>Is there a restaurant?</summary><p>No, but every stay has a kitchen, and we can recommend family restaurants in Óbidos and Caldas da Rainha, 12–18 minutes away.</p></details>
+  </div>
+  <div class="sec"><button class="btn btn-primary btn-block" data-act="plan">${ic('bed')}Plan your stay</button></div>`;
+}
+
+/* ----- booking ----- */
+function calHTML(){
+  const y=S.calY, m=S.calM, first=new Date(y,m,1), days=new Date(y,m+1,0).getDate();
+  const offset=(first.getDay()+6)%7;
+  const canPrev = new Date(y,m,1) > new Date(today.getFullYear(),today.getMonth(),1);
+  const title=first.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+  let cells=['Mo','Tu','We','Th','Fr','Sa','Su'].map(d=>`<div class="dow" aria-hidden="true">${d}</div>`).join('');
+  for(let i=0;i<offset;i++) cells+='<span></span>';
+  const {checkIn:ci, checkOut:co}=S.b;
+  for(let d=1; d<=days; d++){
+    const dt=new Date(y,m,d), k=key(dt);
+    const past = dt<today, blocked=BLOCKED.has(k);
+    let cls=[];
+    if(k===key(today)) cls.push('today');
+    if(ci&&k===ci) cls.push('start');
+    if(co&&k===co) cls.push('end');
+    if(ci&&co&&k>ci&&k<co) cls.push('in');
+    if(ci&&!co&&k===ci) cls.push('end');
+    const lab = dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}) + (blocked?', unavailable':'');
+    cells+=`<button type="button" data-day="${k}" class="${cls.join(' ')}" ${past||blocked?'disabled':''} aria-label="${lab}" aria-pressed="${k===ci||k===co}">${d}</button>`;
+  }
+  const n=nights(), s=stayById(S.b.stayId);
+  return `<div class="cal-head"><button type="button" data-cal="-1" ${canPrev?'':'disabled'} aria-label="Previous month">${ic('left')}</button><h3 aria-live="polite">${title}</h3><button type="button" data-cal="1" aria-label="Next month">${ic('right')}</button></div>
+  <div class="cal">${cells}</div>
+  <div class="range"><div><span>Check-in</span><b>${fmt(ci)}</b></div><div><span>Check-out</span><b>${fmt(co)}</b></div></div>
+  <p class="nights" aria-live="polite">${!ci?'Tap your arrival date.':!co?'Now tap your departure date.':`${n} night${n>1?'s':''}${s?` · about ${eur(n*s.price)} for the ${s.name}`:''}`}</p>`;
+}
+function guestsHTML(){
+  const s=stayById(S.b.stayId), tot=S.b.adults+S.b.children, max=s?s.guests:6;
+  return `<div class="counter"><div class="l"><b>Adults</b><span>Age 13 and over</span></div><div class="c"><button type="button" data-g="adults" data-d="-1" aria-label="Fewer adults" ${S.b.adults<=1?'disabled':''}>−</button><output aria-live="polite">${S.b.adults}</output><button type="button" data-g="adults" data-d="1" aria-label="More adults" ${tot>=max?'disabled':''}>+</button></div></div>
+  <div class="counter"><div class="l"><b>Children</b><span>Age 0 – 12. Cots are free.</span></div><div class="c"><button type="button" data-g="children" data-d="-1" aria-label="Fewer children" ${S.b.children<=0?'disabled':''}>−</button><output aria-live="polite">${S.b.children}</output><button type="button" data-g="children" data-d="1" aria-label="More children" ${tot>=max?'disabled':''}>+</button></div></div>
+  <p class="muted" style="font-size:13.5px;margin-top:6px">${s?`The ${s.name} sleeps up to ${s.guests}.`:''}</p>`;
+}
+function vBook(){
+  const b=S.b;
+  return `<div class="page-title"><h1>Plan your stay</h1><p>Send us your dates and we'll confirm availability by email. No account, no password.</p></div>
+  <form class="sec" id="bookForm" novalidate style="display:grid;gap:16px;padding-top:16px">
+    <div class="card" id="dates"><div class="step"><span class="n">1</span><h3>Choose your dates</h3></div><div id="cal">${calHTML()}</div><div class="field" id="f-dates"><span class="err">Choose both a check-in and a check-out date.</span></div></div>
+
+    <div class="card"><div class="step"><span class="n">2</span><h3>Where would you like to stay?</h3></div>
+      <div class="stay-pick" role="radiogroup">${STAYS.map(s=>`<label><input type="radio" name="stay" value="${s.id}" ${b.stayId===s.id?'checked':''}><span><b>${s.name}</b><small>Up to ${s.guests} guests</small></span><span class="pr">${eur(s.price)}</span></label>`).join('')}</div>
+    </div>
+
+    <div class="card"><div class="step"><span class="n">3</span><h3>Who's coming?</h3></div><div id="guests">${guestsHTML()}</div></div>
+
+    <div class="card"><div class="step"><span class="n">4</span><h3>Your contact details</h3></div>
+      <p class="muted" style="font-size:14px">Used only to reply to this request.</p>
+      <div class="field" id="f-name"><label for="name">Full name</label><input id="name" name="name" autocomplete="name" value="${esc(b.name)}" required><span class="err">Enter your full name.</span></div>
+      <div class="field" id="f-email"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" value="${esc(b.email)}" required><span class="err">Enter a valid email address, like name@example.com.</span></div>
+      <div class="field" id="f-phone"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+351 912 345 678" value="${esc(b.phone)}" required><span class="err">Enter a phone number with at least 7 digits.</span></div>
+      <div class="field"><label for="message">Message or special request <span class="opt">(optional)</span></label><textarea id="message" name="message" placeholder="Arrival time, a cot, breakfast basket, activities…">${esc(b.message)}</textarea></div>
+    </div>
+
+    <div class="note">${ic('info')}<div>This is a request, not a confirmed booking. We'll check availability and reply within 24 hours. Nothing is charged now.</div></div>
+    <div class="alert" id="formAlert" role="alert"></div>
+    <button class="btn btn-primary btn-block" type="submit">Send stay request</button>
+  </form>`;
+}
+function vDone(){
+  const r=S.submitted, s=stayById(r.stayId);
+  return `<div class="done-hero"><div class="m">${hen('wave','Ginja the hen waving')}</div>
+    <h1>Request sent</h1>
+    <p>Thank you, ${esc(r.name.split(' ')[0])}. We've received your stay request and will confirm availability by email within 24 hours.</p>
+    <span class="ref">Ref ${r.ref}</span></div>
+  <div class="tiles thin" aria-hidden="true" style="margin-top:22px"></div>
+  <div class="sec"><div class="card sum"><h2 style="margin-bottom:14px">Your request</h2><dl>
+    <dt>Stay</dt><dd>${s.name}</dd>
+    <dt>Check-in</dt><dd>${fmt(r.checkIn,{weekday:'short',day:'numeric',month:'long',year:'numeric'})}</dd>
+    <dt>Check-out</dt><dd>${fmt(r.checkOut,{weekday:'short',day:'numeric',month:'long',year:'numeric'})}</dd>
+    <dt>Nights</dt><dd>${r.nights}</dd>
+    <dt>Guests</dt><dd>${r.adults} adult${r.adults>1?'s':''}${r.children?`, ${r.children} child${r.children>1?'ren':''}`:''}</dd>
+    <dt>Estimate</dt><dd>${eur(r.nights*s.price)}</dd>
+    <hr>
+    <dt>Name</dt><dd>${esc(r.name)}</dd>
+    <dt>Email</dt><dd>${esc(r.email)}</dd>
+    <dt>Phone</dt><dd>${esc(r.phone)}</dd>
+    ${r.message?`<dt>Message</dt><dd style="font-weight:400">${esc(r.message)}</dd>`:''}
+  </dl></div></div>
+  <div class="sec"><div class="note">${ic('info')}<div>Your dates are not reserved yet. Final availability and price will be confirmed by Ginjas-fit. The estimate excludes tourist tax (€2 per adult per night).</div></div></div>
+  <div class="sec"><h2 style="margin-bottom:6px">What happens next</h2><div class="timeline">
+    <div><span class="d on">${ic('check')}</span><p><b>Request sent</b>Just now</p></div>
+    <div><span class="d">2</span><p><b>We confirm availability</b>By email to ${esc(r.email)}, within 24 hours</p></div>
+    <div><span class="d">3</span><p><b>You pay a 30% deposit</b>Your stay is then fully booked</p></div>
+  </div></div>
+  <div class="sec" style="display:grid;gap:10px"><button class="btn btn-primary btn-block" data-act="home">Back to home</button><button class="btn btn-ghost btn-block" data-go="farm">Explore the farm</button></div>`;
+}
+
+/* ---------- render ---------- */
+function render(){
+  const v={home:vHome,stays:vStays,detail:vDetail,farm:vFarm,explore:vExplore,contact:vContact,book:vBook,done:vDone}[S.view];
+  document.getElementById('main').innerHTML=v();
+  document.getElementById('sticky').innerHTML = S.view==='detail'?stickyDetail():'';
+  document.getElementById('app').classList.toggle('has-sticky', S.view==='detail');
+  renderTop(); renderNav();
+  if(S.view==='detail'){
+    const g=document.getElementById('gal'), dots=[...document.querySelectorAll('#dots span')];
+    g.addEventListener('scroll',()=>{const i=Math.round(g.scrollLeft/g.clientWidth);dots.forEach((d,j)=>d.classList.toggle('on',i===j));},{passive:true});
+  }
+  document.title = S.view==='home'?'Ginjas-fit · Farm stays in Portugal':`${({stays:'Stays',detail:stayById(S.stayId)?.name,farm:'The farm',explore:'Explore',contact:'Contact',book:'Plan your stay',done:'Request sent'})[S.view]} · Ginjas-fit`;
+}
+function refreshCal(){ const c=document.getElementById('cal'); if(c) c.innerHTML=calHTML(); }
+function refreshGuests(){ const g=document.getElementById('guests'); if(g) g.innerHTML=guestsHTML(); }
+
+function startBooking(stayId){
+  if(stayId) {
+    S.b.stayId=stayId;
+    const s=stayById(stayId);
+    if(S.b.adults+S.b.children>s.guests){S.b.children=Math.max(0,s.guests-S.b.adults); if(S.b.adults>s.guests)S.b.adults=s.guests;}
+  }
+  go('book');
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,[data-stay]'); if(!t) return;
+  if(t.dataset.tab){ S.hist=[]; go(t.dataset.tab,{replace:true}); return; }
+  if(t.dataset.go){ go(t.dataset.go); return; }
+  if(t.dataset.stay){ go('detail',{stayId:t.dataset.stay}); return; }
+  if(t.dataset.cmp){ S.cmpMode=t.dataset.cmp; render(); return; }
+  if(t.dataset.cal){ let m=S.calM+Number(t.dataset.cal), y=S.calY; if(m<0){m=11;y--;} if(m>11){m=0;y++;} S.calM=m;S.calY=y; refreshCal(); return; }
+  if(t.dataset.day){
+    const k=t.dataset.day, b=S.b;
+    if(!b.checkIn || b.checkOut || k<=b.checkIn){ b.checkIn=k; b.checkOut=null; }
+    else {
+      // don't allow a range across unavailable nights
+      let d=parse(b.checkIn), clash=false; while(key(d)<k){ if(BLOCKED.has(key(d))) clash=true; d.setDate(d.getDate()+1); }
+      if(clash){ b.checkIn=k; b.checkOut=null; } else b.checkOut=k;
+    }
+    document.getElementById('f-dates')?.classList.remove('bad');
+    refreshCal(); return;
+  }
+  if(t.dataset.g){
+    const f=t.dataset.g; S.b[f]=Math.max(f==='adults'?1:0, S.b[f]+Number(t.dataset.d)); refreshGuests(); return;
+  }
+  const a=t.dataset.act;
+  if(a==='back') goBack();
+  else if(a==='plan') startBooking(null);
+  else if(a==='choose') startBooking(t.dataset.id);
+  else if(a==='home'){ S.hist=[]; go('home',{replace:true}); }
+});
+document.addEventListener('change',e=>{
+  if(e.target.name==='stay'){
+    S.b.stayId=e.target.value; const s=stayById(S.b.stayId);
+    while(S.b.adults+S.b.children>s.guests){ if(S.b.children>0)S.b.children--; else S.b.adults--; }
+    refreshGuests(); refreshCal();
+  }
+});
+document.addEventListener('input',e=>{
+  const n=e.target.name; if(['name','email','phone','message'].includes(n)){ S.b[n]=e.target.value; document.getElementById('f-'+n)?.classList.remove('bad'); }
+});
+document.addEventListener('submit',e=>{
+  if(e.target.id!=='bookForm') return;
+  e.preventDefault();
+  const b=S.b, bad=[];
+  if(!b.checkIn||!b.checkOut) bad.push('dates');
+  if(b.name.trim().length<2) bad.push('name');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(b.email.trim())) bad.push('email');
+  if(b.phone.replace(/\D/g,'').length<7) bad.push('phone');
+  ['dates','name','email','phone'].forEach(f=>document.getElementById('f-'+f)?.classList.toggle('bad',bad.includes(f)));
+  const al=document.getElementById('formAlert');
+  const n=nights();
+  if(!bad.length && n<2){ al.textContent='The minimum stay is 2 nights. Choose a later check-out date.'; al.classList.add('show'); document.getElementById('dates').scrollIntoView({behavior:'smooth',block:'start'}); return; }
+  if(bad.length){
+    al.textContent = bad.length===1 ? 'One field needs attention before you can send your request.' : `${bad.length} fields need attention before you can send your request.`;
+    al.classList.add('show');
+    const first=document.getElementById(bad[0]==='dates'?'dates':'f-'+bad[0]);
+    first.scrollIntoView({behavior:'smooth',block:'center'});
+    const inp=first.querySelector('input'); if(inp) setTimeout(()=>inp.focus({preventScroll:true}),300);
+    return;
+  }
+  al.classList.remove('show');
+  S.submitted = Object.assign({}, b, {nights:n, name:b.name.trim(), email:b.email.trim(), phone:b.phone.trim(), message:b.message.trim(), ref:'GF-'+Math.random().toString(36).slice(2,7).toUpperCase()});
+  S.hist=[]; go('done',{replace:true});
+  S.b = {checkIn:null,checkOut:null,stayId:b.stayId,adults:2,children:0,name:b.name,email:b.email,phone:b.phone,message:''};
+});
+
+render();
+// Android back navigation stays inside this local interface.
+window.ginjaGoBack = function () {
+  if (!S.hist.length) return false;
+  goBack();
+  return true;
+};
+
+})();
+</script>
+</body>
+</html>
