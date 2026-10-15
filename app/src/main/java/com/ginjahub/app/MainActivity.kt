@@ -9,7 +9,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val text = TextView(this).apply {
-            text = "Hello from Ginja Hub!"
+            text = "Hello from R7 Bet!"
             textSize = 24f
             gravity = Gravity.CENTER
         }

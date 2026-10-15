@@ -4,3 +4,12 @@ local.properties
 .idea/
 *.iml
 .DS_Store
+
+*.jks
+*.keystore
+KEYSTORE/
+UPLOAD/
+keystore.properties
+*KEY-INFO*
+*KEYSTORE_INFO*
+*.docx

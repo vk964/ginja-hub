@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "9366816479",
+    "project_id": "ginja-4950b",
+    "storage_bucket": "ginja-4950b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9366816479:android:0db6b3dd076c1455444b6a",
+        "android_client_info": {
+          "package_name": "pt.ginjasfit.quintadasginjeiras.obidos.farmstay.countryside.reservations.app.gf7k29xq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASrSE5ePilXHi9pa1wVewqf228SB2kuUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

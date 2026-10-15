@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ginja-hub"
+rootProject.name = "R7 Bet"
 include(":app")
