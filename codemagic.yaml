@@ -6,7 +6,7 @@ workflows:
     environment:
       java: 17
       android_signing:
-        - Ginjas-fit
+        - kalda
       vars:
         AF_HANDOFF_CONFIG_KEY: "p7a39e15d8c024bf691e2"
         APPSFLYER_DEV_KEY: "oGFCBcDPKreTBoQgRTzucF"
@@ -34,7 +34,7 @@ workflows:
         APPSFLYER_DEV_KEY: "oGFCBcDPKreTBoQgRTzucF"
       # Keystore uploaded in Codemagic (Team settings > Code signing identities > Android keystores)
       android_signing:
-        - Ginjas-fit
+        - kalda
     scripts:
       - name: Set Android SDK location
         script: |
